@@ -1,10 +1,10 @@
 ---
+
 output: 
   html_document:
     theme: cerulean
-    # theme: flatly
-    # toc_float: yes
-    # keep_md: yes
+    toc_float: yes
+    keep_md: yes
     css: styles.css
 ---
 

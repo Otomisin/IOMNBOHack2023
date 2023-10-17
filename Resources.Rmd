@@ -6,9 +6,7 @@ output:
     toc_float: yes
     keep_md: yes
     number_sections: true
-    css: 
-      - styles.css
-  
+    css: styles.css
 ---
 
 <!-- <style> -->
