@@ -1,0 +1,101 @@
+/* Change background color to blue */
+body {
+  background-color: #f5f5f5 !important;
+}
+
+/* Change text (foreground) color to black */
+body {
+  color: #134690 !important;
+}
+
+.emph {
+  color: #134690 ;  /*#ff5500 #D14300 #0033A0 */ 
+}
+
+h1{
+   color: #002080 !important
+}
+
+h2{
+   color: #134690 !important
+}
+
+h3{
+   color: #134690 !important
+}
+/* Header background color */
+.header {
+  background-color: #002080;
+}
+
+/* Header text color */
+.header h1 {
+  color: white;
+}
+
+/* Link color */
+a {
+  color: #0077E6;
+}
+
+/* Code block background color */
+pre {
+  background-color: #002080;
+  color: white;
+}
+
+/* Code block text color */
+code {
+  color: white;
+}
+
+
+/* Tabs*/
+/* Style the tabs */
+.nav-tabs > li > a {
+  background-color: #0033A0; /* Blue color */
+  color: white; /* Text color */
+}
+
+/* Style the active tab */
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #0077E6; /* Darker blue for active tab */
+  color: white; /* Text color for active tab */
+}
+
+
+
+/* Code chunk background color */
+pre code {
+    background-color: #f0f0f0; /* Background color for code chunks */
+    border: 1px solid #0033A0; /* Border color for code chunks */
+}
+
+/* Highlight color for code */
+pre code .hljs {
+    background: #0033A0; /* Code highlight color */
+    color: white; /* Text color for contrast */
+}
+
+/* Links color */
+a {
+    color: #0033A0; /* Link color */
+}
+
+/* Table header background color */
+table thead th {
+    background-color: #0033A0; /* Table header background color */
+    color: white; /* Text color for contrast */
+}
+
+/* Table row background color */
+table tbody tr:nth-child(odd) {
+    background-color: #f0f0f0; /* Odd row background color */
+}
+
+/* Table row hover color */
+table tbody tr:hover {
+    background-color: #dddddd; /* Hover background color */
+}

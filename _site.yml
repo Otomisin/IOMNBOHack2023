@@ -1,0 +1,9 @@
+name: "IOM-UN Hack 2023"
+navbar:
+  title: "IOM-UN Hack 2023"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Resources"
+      href: Resources.html
+output_dir: "docs"

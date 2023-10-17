@@ -1,0 +1,64 @@
+/* Custom CSS for R Markdown */
+
+/* Header background color */
+.header {
+    background-color: #0033A0;
+    color: white; /* Text color for contrast */
+}
+
+/* Sidebar background color */
+.sidebar {
+    background-color: #0033A0;
+    color: white; /* Text color for contrast */
+}
+
+/* Tabs*/
+/* Style the tabs */
+.nav-tabs > li > a {
+  background-color: #0033A0; /* Blue color */
+  color: white; /* Text color */
+}
+
+/* Style the active tab */
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #0077E6; /* Darker blue for active tab */
+  color: white; /* Text color for active tab */
+}
+
+
+
+
+/* Code chunk background color */
+pre code {
+    background-color: #f0f0f0; /* Background color for code chunks */
+    border: 1px solid #0033A0; /* Border color for code chunks */
+}
+
+/* Highlight color for code */
+pre code .hljs {
+    background: #0033A0; /* Code highlight color */
+    color: white; /* Text color for contrast */
+}
+
+/* Links color */
+a {
+    color: #0033A0; /* Link color */
+}
+
+/* Table header background color */
+table thead th {
+    background-color: #0033A0; /* Table header background color */
+    color: white; /* Text color for contrast */
+}
+
+/* Table row background color */
+table tbody tr:nth-child(odd) {
+    background-color: #f0f0f0; /* Odd row background color */
+}
+
+/* Table row hover color */
+table tbody tr:hover {
+    background-color: #dddddd; /* Hover background color */
+}

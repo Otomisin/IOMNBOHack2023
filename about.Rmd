@@ -1,0 +1,8 @@
+---
+title: "About"
+---
+
+# About DTM Hack 2023
+
+<hr>
+![](images/flyer.png){ width=500% height=100% }
