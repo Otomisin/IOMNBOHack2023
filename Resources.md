@@ -33,11 +33,9 @@ Participants are encouraged to bring their own laptops or devices for data analy
 
 ## Recommended software
 
-IOM Is partnering with **Snowflake**, a cloud-based data warehousing platform designed to store and analyze large volumes of data. It was developed to address the challenges of traditional data warehouses by offering a fully managed, scalable, and highly flexible solution for handling structured and semi-structured data.
+IOM Is partnering with **Snowflake**, a cloud-based data warehousing platform designed to store and analyze large volumes of data. It was developed to address the challenges of traditional data warehouses by offering a fully managed, scalable, and highly flexible solution for handling structured and semi-structured data. Snowflake will be housing the data and there would be an opportunity to use the snowflake platform for data wrangling, analysis and visualization(Streamlit).
 
-Snowflake will be housing the data and there would be an opportunity to use the platform for data wrangling, analysis and visualization(Streamlit).
-
-Additionally, we will integrate Google Colab's collaborative features to enable real-time collaboration and improve teamwork. Moreover, you have the flexibility to select software tools and programming languages that best align with your expertise and research objectives. Your options encompass Python, R, as well as specialized GIS software such as ArcGIS or QGIS, ensuring that your choice aligns seamlessly with the unique requirements of your research project.
+Additionally, we're making provisions for the use of Python in Jupyter notebook through Google Colab's collaborative features to enable real-time collaboration and improve teamwork. Moreover, you have the flexibility to select software tools and programming languages that best align with your expertise and research objectives. Your options encompass Python, R, as well as specialized GIS software such as ArcGIS or QGIS, ensuring that your choice aligns seamlessly with the unique requirements of your research project.
 
 If you prefer using Integrated Development Environments (IDEs) like Visual Studio or PyCharm, you are welcome to do so. However, please note that while we support your choice, we may not be able to provide technical support on version compatibility for these IDEs.
 
@@ -183,8 +181,6 @@ Will there be any data privacy or ethical considerations when working with sensi
 33.	Gioli, G., Hugo, G., Costa Mia, Scheffran, J. (2015). Human mobility, climate adaptation, and development.
 34.	Mengiste, T. A. (2019). Precarious mobility: Infrastructures of Eritrean migration through the Sudan and the Sahara desert. African Human Mobility Review, 5(1).
 35.	D. M. Bruijn, V. Dijk, D. Foeken. (n.d.). Mobile Africa: Changing patterns of movement in Africa and beyond.
-36.	D. M. Bruijn, V. Dijk, D. Foeken. (n.d.). Mobile Africa: Changing patterns of movement in Africa and beyond.
-
 
 As we embark on this journey together, let's remember that innovation, collaboration, and the pursuit of knowledge are the driving forces behind transformative change. We look forward to witnessing the impactful solutions and insights that emerge from your dedicated efforts during this hackathon.
 
