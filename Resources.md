@@ -1,13 +1,12 @@
 ---
-output: 
+output:
   html_document:
-    theme: cerulean
-    # theme: flatly
     toc: yes
+    theme: cerulean
     toc_float: yes
     keep_md: yes
+    number_sections: true
     css: styles.css
-  
 ---
 
 <!-- <style> -->
@@ -34,14 +33,13 @@ Participants are encouraged to bring their own laptops or devices for data analy
 
 ## Recommended software
 
-IOM Is partnering with snowflake, **Snowflake** is a cloud-based data warehousing platform designed to store and analyze large volumes of data. It was developed to address the challenges of traditional data warehouses by offering a fully managed, scalable, and highly flexible solution for handling structured and semi-structured data.
+IOM Is partnering with **Snowflake**, a cloud-based data warehousing platform designed to store and analyze large volumes of data. It was developed to address the challenges of traditional data warehouses by offering a fully managed, scalable, and highly flexible solution for handling structured and semi-structured data.
 
 Snowflake will be housing the data and there would be an opportunity to use the platform for data wrangling, analysis and visualization(Streamlit).
 
-In addition to this, You have the freedom to choose software tools and programming languages that suit your expertise and research goals. Options include Python, R, or specialized GIS software like ArcGIS or QGIS. Your choice should align with the specific demands of your research project.
+Additionally, we will integrate Google Colab's collaborative features to enable real-time collaboration and improve teamwork. Moreover, you have the flexibility to select software tools and programming languages that best align with your expertise and research objectives. Your options encompass Python, R, as well as specialized GIS software such as ArcGIS or QGIS, ensuring that your choice aligns seamlessly with the unique requirements of your research project.
 
 If you prefer using Integrated Development Environments (IDEs) like Visual Studio or PyCharm, you are welcome to do so. However, please note that while we support your choice, we may not be able to provide technical support on version compatibility for these IDEs.
-
 
 
 # <span class="emph"><strong>Resources and Links</strong></span>
