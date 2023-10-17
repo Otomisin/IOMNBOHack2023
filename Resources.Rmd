@@ -1,12 +1,13 @@
 ---
-output: 
+output:
   html_document:
-    theme: cerulean
-    # theme: flatly
     toc: yes
+    theme: cerulean
     toc_float: yes
     keep_md: yes
-    css: styles.css
+    number_sections: true
+    css: 
+      - styles.css
   
 ---
 
