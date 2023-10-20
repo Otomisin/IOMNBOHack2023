@@ -9,13 +9,6 @@ output:
     css: styles.css
 ---
 
-<!-- <style> -->
-<!--   h2{ -->
-<!--      color: crimson !important -->
-<!--   } -->
-<!-- </style> -->
-
-
 <hr>
 ![](images/header.png){ width=1000% height=100% }
 This is section will give you a quick introduction to snowflake, connecting to the platform via Python and R. 
@@ -111,8 +104,8 @@ For a successful hackathon submission, it's essential to leverage Snowflake's un
 5. [Getting Started with Geospatial](https://quickstarts.snowflake.com/guide/getting_started_with_geospatial_geography/index.html?index=..%2F..index&amp;0)
    - This guide expands on the introduction to working with Geospatial data. It covers geospatial formats supported by Snowflake and offers walkthroughs with various functions on sample geospatial datasets.
 
-
-# Browsing and Installing Datasets via the Snowflake Marketplace
+# <span class="emph"><strong> Browsing and Installing Datasets via the Snowflake Marketplace
+</strong></span>
 
 ## Step 1: Browsing Marketplace Datasets
 
