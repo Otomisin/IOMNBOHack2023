@@ -9,11 +9,6 @@ output:
     css: styles.css
 ---
 
-<hr>
-![](images/header.png){ width=1000% height=100% }
-This is section will give you a quick introduction to snowflake, connecting to the platform via Python and R. 
-
-
 ![](images/snowtasty.png){ width=1000% height=100% }
 
 # <span class="emph"><strong> What is Snowflake?</strong></span>
