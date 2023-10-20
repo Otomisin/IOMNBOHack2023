@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Snoflake.knit</title>
+
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">IOM-UN Hack 2023</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Resources.html">Resources</a>
+</li>
+<li>
+  <a href="Snoflake.html">Snoflake</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<!-- <style> -->
+<!--   h2{ -->
+<!--      color: crimson !important -->
+<!--   } -->
+<!-- </style> -->
+<hr>
+<p><img src="images/header.png" style="width:1000.0%;height:100.0%" />
+This is section will give you a quick introduction to snowflake,
+connecting to the platform via Python and R.</p>
+<p><img src="images/snowtasty.png"
+style="width:1000.0%;height:100.0%" /></p>
+<div id="what-is-snowflake" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> <span
+class="emph"><strong> What is Snowflake?</strong></span></h1>
+<strong>Snowflake</strong> is a cloud-based data warehousing platform
+designed to store and analyze large volumes of data. It was developed to
+address the challenges of traditional data warehouses by offering a
+fully managed, scalable, and highly flexible solution for handling
+structured and semi-structured data. <a
+href="https://www.youtube.com/watch?v=9PBvVeCQi0w">check this quick
+intro</a> - # <span class="emph"><strong> Zero to Snowflake: Tasty Bytes
+Quickstarts</strong></span>
+<hr>
+<ol style="list-style-type: decimal">
+<li><p><a
+href="https://www.youtube.com/watch?v=9PBvVeCQi0w">Introduction to
+Snowflake Video</a>: An 8-minute introductory video on Snowflake to gain
+an idea of what it can do and see it in action.</p></li>
+<li><p><a
+href="https://quickstarts.snowflake.com/guide/tasty_bytes_introduction/index.html#3">Introduction
+to Snowflake via Tasty Bytes</a>: A quick walkthrough covering the
+majority of the basic topics relevant to the hackathon.</p></li>
+<li><p><a
+href="https://www.youtube.com/watch?v=ZzfCsmKoVQY">Introduction to
+Snowpark</a>: An introductory video on Snowpark.</p></li>
+</ol>
+</div>
+<div id="connecting-to-snowflake" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> <span
+class="emph"><strong> Connecting to SnowFlake</strong></span></h1>
+<p>In addition to working directly within the Snowflake environment, you
+also have the option to connect to Snowflake from various integrated
+development environments (IDEs), including RStudio. This section
+explores the different options available for connecting to Snowflake
+using RStudio.</p>
+<p><strong>Please note that we will provide scripts to assist you in
+connecting to Snowflake via Python or Rstudio in case you encounter
+difficulties.</strong> It is crucial to ensure that all necessary
+installations are completed, especially if you require administrative
+privileges. This includes setting up the ODBC driver for RStudio.</p>
+<div id="connecting-from-python" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Connecting from
+Python:</h2>
+<ol style="list-style-type: decimal">
+<li>VS Code</li>
+<li>Google Colab:</li>
+<li>HEX <a href="https://www.youtube.com/watch?v=XiXdF2IlGRA">2-minute
+video</a></li>
+</ol>
+</div>
+<div id="connecting-from-r-studio" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Connecting from R
+studio:</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>Install Prerequisites:</strong> Ensure you have R and
+RStudio installed on your computer.</p></li>
+<li><p><strong>Download ODBC Driver:</strong> Download the Snowflake
+ODBC driver from this location: <a
+href="https://developers.snowflake.com/odbc/">Snowflake ODBC
+Driver</a></p></li>
+<li><p><strong>Configure ODBC:</strong></p></li>
+</ol>
+<ul>
+<li><p>For Windows Users: Follow the configuration instructions for ODBC
+on Windows using this link: <a
+href="https://docs.snowflake.com/developer-guide/odbc/odbc-windows">Snowflake
+ODBC Configuration for Windows</a></p></li>
+<li><p>For Mac Users: Follow the configuration instructions for ODBC on
+Mac using this link: <a
+href="https://docs.snowflake.com/developer-guide/odbc/odbc-mac">Snowflake
+ODBC Configuration for Mac</a></p></li>
+</ul>
+<p>4 <strong>Sample Code</strong></p>
+<ul>
+<li>Use the following sample R code to connect to Snowflake:</li>
+</ul>
+<pre class="r mycode"><code># Load the required libraries
+library(DBI)
+library(odbc)
+
+# Set up Snowflake connection parameters
+dsn_name &lt;- &quot;YourSnowflakeDSN&quot;
+uid &lt;- &quot;YourUsername&quot;
+pwd &lt;- &quot;YourPassword&quot;
+
+# Connect to Snowflake
+con &lt;- DBI::dbConnect(odbc::odbc(),
+                      Driver = &#39;SnowflakeDSIIDriver&#39;,
+                      Server = &#39;XXXXXXX.REGION.azure.snowflakecomputing.com&#39;,
+                      UID = &#39;ENTER YOUR SNOWFLAKE LOGIN USERNAME&#39;,
+                      PWD = &#39;ENTER YOUR SNOWFLAKE LOGIN PASSWORD&#39;,
+                      Database = &#39;SNOWFLAKE_SAMPLE_DATA&#39;)
+
+# Now you can use &#39;con&#39; to interact with Snowflake
+
+Make sure to replace &quot;YourSnowflakeDSN&quot;, &quot;YourUsername&quot;, and &quot;YourPassword&quot; with your specific Snowflake connection details.</code></pre>
+<hr>
+</div>
+</div>
+<div id="additional-relevant-resources-reading-material"
+class="section level1" number="3">
+<h1><span class="header-section-number">3</span> <span
+class="emph"><strong> Additional Relevant Resources &amp; Reading
+Material</strong></span></h1>
+<p>For a successful hackathon submission, it’s essential to leverage
+Snowflake’s unique features and capabilities. Explore the following
+resources to prepare for the event:</p>
+<ol style="list-style-type: decimal">
+<li><a
+href="https://quickstarts.snowflake.com/guide/getting_started_with_snowflake/index.html#0">Getting
+Started with Snowflake: Zero to Snowflake</a>
+<ul>
+<li>This comprehensive walkthrough introduces the core concepts of the
+Snowflake platform, including the Snowflake Marketplace, where customers
+can access thousands of data listings.</li>
+</ul></li>
+<li><a
+href="https://quickstarts.snowflake.com/guide/tasty_bytes_snowpark_101_for_data_science/index.html?index=..%2F..index&amp;0">Tasty
+Bytes Snowpark 101 for Data Science</a>
+<ul>
+<li>Building on the Tasty Bytes introduction, this guide demonstrates
+how to perform essential data engineering tasks directly within the
+Snowflake UI.</li>
+</ul></li>
+<li><a
+href="https://quickstarts.snowflake.com/guide/tasty_bytes_zero_to_snowflake_geospatial/#0">Tasty
+Bytes 101 for Geospatial</a>
+<ul>
+<li>Also utilizing the Tasty Bytes introduction, this guide showcases
+Snowflake’s capability to work seamlessly with Geospatial data.</li>
+</ul></li>
+<li><a
+href="https://quickstarts.snowflake.com/guide/getting_started_with_snowpark_for_python_streamlit/index.html?index=..%2F..index&amp;0">Getting
+Started with Snowpark for Python and Streamlit</a>
+<ul>
+<li>This standalone guide provides instructions for creating a Streamlit
+application using Snowpark for Python and data from Snowflake.</li>
+</ul></li>
+<li><a
+href="https://quickstarts.snowflake.com/guide/getting_started_with_geospatial_geography/index.html?index=..%2F..index&amp;0">Getting
+Started with Geospatial</a>
+<ul>
+<li>This guide expands on the introduction to working with Geospatial
+data. It covers geospatial formats supported by Snowflake and offers
+walkthroughs with various functions on sample geospatial datasets.</li>
+</ul></li>
+</ol>
+</div>
+<div id="browsing-and-installing-datasets-via-the-snowflake-marketplace"
+class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Browsing and Installing
+Datasets via the Snowflake Marketplace</h1>
+<div id="step-1-browsing-marketplace-datasets" class="section level2"
+number="4.1">
+<h2><span class="header-section-number">4.1</span> Step 1: Browsing
+Marketplace Datasets</h2>
+<ol style="list-style-type: decimal">
+<li><p>Before or during the Hackathon, you can browse the Marketplace
+datasets through the <a
+href="https://app.snowflake.com/marketplace/">public search
+interface</a> (no login required).</p></li>
+<li><p>Filter the datasets to find those that are tagged as ‘Free’ or
+‘Free to try.’</p></li>
+<li><p>Further narrow down datasets by selecting a specific geographic
+region. Use the ‘Geo’ filter and choose ‘Specific Countries or States’
+from the options. Then, use the checkboxes to select a country or
+state.</p></li>
+<li><p>Utilize other filters to focus on specific domains such as
+economy, energy, geospatial, or more.</p></li>
+</ol>
+</div>
+<div id="step-2-example-datasets" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Step 2: Example
+Datasets</h2>
+<p>Here are some example datasets you can explore from the Snowflake
+Marketplace:</p>
+<ol style="list-style-type: decimal">
+<li><a
+href="https://app.snowflake.com/marketplace/listing/GZSVZ8ON6J/dataconsulting-pl-opencellid-open-database-of-cell-towers">Open
+CelliD - Open Database of Cell Towers</a>
+<ul>
+<li>Description: Global cell tower locations, serving as a proxy for
+urban population.</li>
+</ul></li>
+<li><a
+href="https://app.snowflake.com/marketplace/listing/GZSTZ491VXQ/knoema-economy-data-atlas?search=knoema">Knoema
+Economy Data Atlas</a>
+<ul>
+<li>Description: Provides economic and financial developments and
+macroeconomic indicators that shape market trends.</li>
+</ul></li>
+<li><a
+href="https://app.snowflake.com/marketplace/listing/GZSTZ491VXM/knoema-demographics-data-atlas?search=knoema">Knoema
+Demographics Data Atlas</a>
+<ul>
+<li>Description: Offers a wide variety of population dynamics indicators
+for most of the world’s countries, including population size and growth,
+age dependency ratios, median age, birth and death rates, fertility
+rates, life expectancy at birth, migration, population density, and
+more.</li>
+</ul></li>
+<li><a
+href="https://app.snowflake.com/marketplace/listing/GZSTZV57YNYD/knoema-daily-weather-data?search=knoema">Knoema
+Daily Weather Data</a>
+<ul>
+<li>Description: Contains daily climatic data for the world, including
+daily mean temperature, pressure, precipitation, vapor pressure, and
+sunshine data from over 9,000 stations.</li>
+</ul></li>
+</ol>
+<p>Feel free to explore these datasets to find valuable information for
+your Hackathon project.</p>
+<hr>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

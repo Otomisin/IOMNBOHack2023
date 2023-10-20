@@ -6,4 +6,6 @@ navbar:
     #   href: index.html
     - text: "Resources"
       href: Resources.html
+    - text: "Snoflake"
+      href: Snoflake.html
 output_dir: "docs"

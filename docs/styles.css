@@ -1,3 +1,10 @@
+/* Change the background color of code blocks to white */
+pre code {
+  background-color: white;
+  /* You can add more styling here, if needed */
+}
+
+
 /* Change background color to blue */
 body {
   background-color: #f5f5f5 !important;
@@ -70,12 +77,12 @@ code {
 /* Code chunk background color */
 pre code {
     background-color: #f0f0f0; /* Background color for code chunks */
-    border: 1px solid #0033A0; /* Border color for code chunks */
+    border: 1px solid #EDE7DC; /* Border color for code chunks #TO*/ #0033A0
 }
 
 /* Highlight color for code */
 pre code .hljs {
-    background: #0033A0; /* Code highlight color */
+     /* background: #EDE7DC; Code highlight color #TO*/ 
     color: white; /* Text color for contrast */
 }
 
