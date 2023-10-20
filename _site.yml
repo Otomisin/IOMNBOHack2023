@@ -4,8 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Resources"
-      href: Resources.html
-    - text: "Snoflake"
-      href: Snoflake.html
+    - text: "Hackathon-Resources"
+      href: Hackathon-Resources.html
+    - text: "Snowflake"
+      href: Snowflake.html
 output_dir: "docs"
