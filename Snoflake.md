@@ -35,6 +35,7 @@ In addition to working directly within the Snowflake environment, you also have 
 3. HEX [2-minute video](https://www.youtube.com/watch?v=XiXdF2IlGRA) 
 
 ## Connecting from R studio:
+**<span style="color:red">If you're using an organization account, ensure you get the necessary permission to install needed software in case you need admin rights to install!</span>**
 
 1. **Install Prerequisites:** Ensure you have R and RStudio installed on your computer.
 
